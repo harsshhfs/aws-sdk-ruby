@@ -31,6 +31,7 @@ require 'aws/core/autoloader'
 # * {AWS::ElasticBeanstalk}
 # * {AWS::ELB}
 # * {AWS::EMR}
+# * {AWS::Glacier}
 # * {AWS::IAM}
 # * {AWS::RDS}
 # * {AWS::Route53}
@@ -219,6 +220,10 @@ module AWS
     # @option options [String,nil] :session_token AWS secret token
     #   credential.
     #
+    # @option options [String,nil] :account_id (nil) Your AWS account id.  Only
+    #   certain services (like Glacier) require you to configure your
+    #   account id.
+    #
     # @option options [String] :auto_scaling_endpoint ('autoscaling.us-east-1.amazonaws.com')
     #   The service endpoint for Auto Scaling.
     #
@@ -254,6 +259,9 @@ module AWS
     #
     # @option options [String] :elb_endpoint ('elasticloadbalancing.us-east-1.amazonaws.com')
     #   The service endpoint for Elastic Load Balancing.
+    #
+    # @option options [String] :glacier_endpoint ('glacier.us-east-1.amazonaws.com')
+    #   The service endpoint for Amazon Glacier.
     #
     # @option options [Object] :http_handler (AWS::Core::Http::NetHttpHandler)
     #   The http handler that sends requests to AWS.
