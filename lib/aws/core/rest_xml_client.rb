@@ -13,23 +13,31 @@
 
 module AWS
   module Core
+    class RESTXMLClient < Core::Client
 
-    # @private
-    class JSONResponseParser
+      protected
 
-      def initialize rules
-        @parser = JSONParser.new(rules)
+      def self.request_builder_for api_config, operation
+        RESTRequestBuilder.new(operation,
+          :format => :xml,
+          :xmlnamespace => api_config[:namespace])
       end
 
-      def extract_data response
-        @parser.parse(response.http_response.body)
+      def self.response_parser_for api_config, operation
+        RESTResponseParser.new(operation, :format => :xml)
       end
 
-      def simulate
-        {}
+      def extract_error_details response
+        if
+          response.http_response.status >= 300 and
+          body = response.http_response.body and
+          error = errors_module::GRAMMAR.parse(body) and
+          error[:code]
+        then
+          [error[:code], error[:message]]
+        end
       end
 
     end
-
   end
 end

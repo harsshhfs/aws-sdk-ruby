@@ -381,7 +381,7 @@ module AWS
 
       # Extracts the error code and error message from a response
       # if it contains an error.  Returns nil otherwise.  Should be defined
-      # in sub-classes (e.g. QueryClient, RESTClient, etc).
+      # in sub-classes (e.g. QueryClient, RESTXMLClient, etc).
       # @param [Response] response
       # @return [Array<Code,Message>,nil] Should return an array with an
       #   error code and message, or +nil+.
@@ -533,12 +533,12 @@ module AWS
 
         protected
 
-        # Define this in sub-classes (e.g. QueryClient, RESTClient, etc)
+        # Define this in sub-classes (e.g. QueryClient, RESTXMLClient, etc)
         def request_builder_for api_config, operation
           raise NotImplementedError
         end
 
-        # Define this in sub-classes (e.g. QueryClient, RESTClient, etc)
+        # Define this in sub-classes (e.g. QueryClient, RESTXMLClient, etc)
         def response_parser_for api_config, operation
           raise NotImplementedError
         end

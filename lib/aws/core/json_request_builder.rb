@@ -19,13 +19,23 @@ module AWS
 
       def initialize target_prefix, operation
         @x_amz_target = target_prefix + operation[:name]
-        @grammar = OptionGrammar.customize(operation[:inputs])
+        @validator = Options::Validator.new(operation[:inputs])
+        @serializer = Options::JSONSerializer.new(operation[:inputs])
       end
 
-      def populate_request request, options
+      def populate_request request, request_options
+
         request.headers["content-type"] = "application/x-amz-json-1.0"
         request.headers["x-amz-target"] = @x_amz_target
-        request.body = @grammar.to_json(options)
+
+        params = @validator.validate!(request_options)
+
+        if params.empty?
+          request.body = nil
+        else
+          request.body = @serializer.serialize(params)
+        end
+
       end
 
     end
