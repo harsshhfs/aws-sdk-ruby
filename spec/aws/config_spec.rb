@@ -22,6 +22,22 @@ describe AWS do
 
     context 'options' do
 
+      context ':account_id' do
+
+        it 'defaults to "-"' do
+          config.account_id.should eq('-')
+        end
+
+        it 'can be updated' do
+          config(:account_id => '1234567890').account_id.should eq('1234567890')
+        end
+
+        it 'removes hyphens from the account id' do
+          config(:account_id => '1234-5678').account_id.should eq('12345678')
+        end
+
+      end
+
       context ':access_key_id' do
 
         it 'defaults to nil' do
