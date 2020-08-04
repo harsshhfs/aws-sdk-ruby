@@ -31,7 +31,7 @@ group :test do
   gem 'mocha', '0.9.8'
   gem 'net-ssh', '~> 2.1'
   gem 'multipart-post', '~> 1.1.2'
-  gem 'rotp', '~> 1.3.0'
+  gem 'rotp', '~> 6.1.0'
   gem 'jruby-openssl', :platforms => :jruby
 end
 
