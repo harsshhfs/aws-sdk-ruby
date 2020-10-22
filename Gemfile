@@ -26,7 +26,7 @@ group :test do
   gem 'rspec'
   gem 'simplecov', :require => false
   gem 'rvm-tester'
-  gem 'cucumber', '~> 0.10.2', :require => 'cucumber/rake/task'
+  gem 'cucumber', '~> 5.2.0', :require => 'cucumber/rake/task'
   gem 'bourne', '1.0'
   gem 'mocha', '0.9.8'
   gem 'net-ssh', '~> 2.1'
